@@ -22,7 +22,7 @@ export function useSignUpScreen() {
     const signUpFormSchema = z.object({
         email: z.string().email(),
         password: z.string().min(8),
-        username: z.string().min(3),
+        username: z.string().min(3).trim(),
     });
 
     function handleSignInPress() {
@@ -31,7 +31,8 @@ export function useSignUpScreen() {
 
     function handleSignUp() {
         const validation = signUpFormSchema.safeParse(form);
-        console.log(validation);
+        if (validation.success) {
+        }
     }
     return {
         form,

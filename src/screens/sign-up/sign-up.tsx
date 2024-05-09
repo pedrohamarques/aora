@@ -39,6 +39,8 @@ export function SignUpScreen() {
                         }
                         otherStyles='mt-7'
                         testID='screens.sign-up.form-field.username'
+                        autoCapitalize='none'
+                        autoCorrect={false}
                     />
 
                     <FormField
@@ -48,6 +50,8 @@ export function SignUpScreen() {
                         otherStyles='mt-7'
                         keyboardType='email-address'
                         testID='screens.sign-up.form-field.email'
+                        autoCapitalize='none'
+                        autoCorrect={false}
                     />
                     <FormField
                         title='Password'
