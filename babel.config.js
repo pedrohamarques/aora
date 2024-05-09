@@ -11,6 +11,8 @@ module.exports = function (api) {
                         "@assets": "./src/assets",
                         "@constants": "./src/constants",
                         "@typings": "./src/typings",
+                        "@screens": "./src/screens",
+                        "@routes": "./src/routes",
                     },
                 },
             ],
