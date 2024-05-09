@@ -3,16 +3,17 @@ module.exports = function (api) {
     return {
         presets: ["babel-preset-expo"],
         plugins: [
+            "nativewind/babel",
             [
                 "module-resolver",
                 {
                     alias: {
                         "@assets": "./src/assets",
                         "@constants": "./src/constants",
+                        "@typings": "./src/typings",
                     },
                 },
             ],
-            "nativewind/babel",
         ],
     };
 };

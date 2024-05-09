@@ -5,7 +5,8 @@
         "baseUrl": ".",
         "paths": {
             "@assets/*": ["./src/assets/*"],
-            "@constants/*": ["./src/constants/*"]
+            "@constants/*": ["./src/constants/*"],
+            "@typings/*": ["./src/typings/*"]
         }
     }
 }
