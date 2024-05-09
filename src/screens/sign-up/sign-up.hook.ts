@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { z } from "zod";
 
 import { PUBLIC_ROUTES, PublicRoutesParam } from "@typings/routes";
 
@@ -18,12 +19,19 @@ export function useSignUpScreen() {
     const navigation =
         useNavigation<NativeStackNavigationProp<PublicRoutesParam>>();
 
+    const signUpFormSchema = z.object({
+        email: z.string().email(),
+        password: z.string().min(8),
+        username: z.string().min(3),
+    });
+
     function handleSignInPress() {
         navigation.navigate(PUBLIC_ROUTES.SIGN_IN);
     }
 
     function handleSignUp() {
-        console.log("Sign Up");
+        const validation = signUpFormSchema.safeParse(form);
+        console.log(validation);
     }
     return {
         form,
