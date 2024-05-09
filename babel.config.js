@@ -9,6 +9,7 @@ module.exports = function (api) {
                     alias: {},
                 },
             ],
+            "nativewind/babel",
         ],
     };
 };
