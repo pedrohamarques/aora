@@ -4,6 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 
 import { TabNavigation } from "@routes/tab-navigation";
+import { PublicNavigation } from "@routes/public-navigation";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,9 +29,11 @@ export default function App() {
 
     if (!fontsLoaded && !error) return null;
 
+    const isSignedIn = false;
+
     return (
         <NavigationContainer>
-            <TabNavigation />
+            {isSignedIn ? <TabNavigation /> : <PublicNavigation />}
         </NavigationContainer>
     );
 }
