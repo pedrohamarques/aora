@@ -3,7 +3,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { CustomButton } from "@components/custom-button";
 
+import { useOnboardingScreen } from "./onboarding.hook";
+
 export function OnboardingScreen() {
+    const { handleSignInPress } = useOnboardingScreen();
     return (
         <SafeAreaView className='bg-primary h-full'>
             <ScrollView
@@ -41,7 +44,7 @@ export function OnboardingScreen() {
                     <CustomButton
                         title='Continue with E-mail'
                         containerStyles='w-full mt-7'
-                        onPress={() => console.log("Pressed")}
+                        onPress={handleSignInPress}
                         testID='screens.onboarding.custom-button'
                     />
                 </View>

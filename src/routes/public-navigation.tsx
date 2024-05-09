@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import OnboardingScreen from "@screens/onboarding";
+import SignInScreen from "@screens/sign-in";
+import SignUpScreen from "@screens/sign-up";
 
 import { PUBLIC_ROUTES, PublicRoutesParam } from "@typings/routes";
 
@@ -14,6 +16,14 @@ export function PublicNavigation() {
             <PublicNavigation.Screen
                 name={PUBLIC_ROUTES.ONBOARDING}
                 component={OnboardingScreen}
+            />
+            <PublicNavigation.Screen
+                name={PUBLIC_ROUTES.SIGN_IN}
+                component={SignInScreen}
+            />
+            <PublicNavigation.Screen
+                name={PUBLIC_ROUTES.SIGN_UP}
+                component={SignUpScreen}
             />
         </PublicNavigation.Navigator>
     );
