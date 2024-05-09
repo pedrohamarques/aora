@@ -6,7 +6,10 @@ module.exports = function (api) {
             [
                 "module-resolver",
                 {
-                    alias: {},
+                    alias: {
+                        "@assets": "./src/assets",
+                        "@constants": "./src/constants",
+                    },
                 },
             ],
             "nativewind/babel",
