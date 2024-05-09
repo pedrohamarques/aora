@@ -9,7 +9,8 @@
             "@typings/*": ["./src/typings/*"],
             "@screens/*": ["./src/screens/*"],
             "@routes/*": ["./src/routes/*"],
-            "@components/*": ["./src/components/*"]
+            "@components/*": ["./src/components/*"],
+            "@libs/*": ["./src/libs/*"]
         }
     }
 }
