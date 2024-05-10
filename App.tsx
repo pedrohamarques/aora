@@ -3,8 +3,9 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { TabNavigation } from "@routes/tab-navigation";
-import { PublicNavigation } from "@routes/public-navigation";
+import { AuthProvider } from "@contexts/auth-provider";
+
+import Routes from "@routes/index";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,11 +30,11 @@ export default function App() {
 
     if (!fontsLoaded && !error) return null;
 
-    const isSignedIn = false;
-
     return (
-        <NavigationContainer>
-            {isSignedIn ? <TabNavigation /> : <PublicNavigation />}
-        </NavigationContainer>
+        <AuthProvider>
+            <NavigationContainer>
+                <Routes />
+            </NavigationContainer>
+        </AuthProvider>
     );
 }
