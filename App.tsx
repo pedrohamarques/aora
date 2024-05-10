@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
+import "react-native-reanimated";
 
 import { AuthProvider } from "@contexts/auth-provider";
 
