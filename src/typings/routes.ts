@@ -9,6 +9,7 @@ export enum PUBLIC_ROUTES {
     ONBOARDING = "Onboarding",
     SIGN_IN = "SignIn",
     SIGN_UP = "SignUp",
+    SUCCESS_SIGN_UP = "SuccessSignUp",
 }
 
 export type TabRoutesParams = {
@@ -22,4 +23,8 @@ export type PublicRoutesParam = {
     [PUBLIC_ROUTES.ONBOARDING]: undefined;
     [PUBLIC_ROUTES.SIGN_IN]: undefined;
     [PUBLIC_ROUTES.SIGN_UP]: undefined;
+    [PUBLIC_ROUTES.SUCCESS_SIGN_UP]: {
+        email: string;
+        password: string;
+    };
 };

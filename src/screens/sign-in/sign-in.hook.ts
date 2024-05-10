@@ -1,7 +1,11 @@
+import { useState } from "react";
+import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
+import { supabase } from "@services/supabase";
+
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { PUBLIC_ROUTES, PublicRoutesParam } from "@typings/routes";
-import { useState } from "react";
 
 const initialSignInFormState = {
     email: "",
@@ -20,8 +24,25 @@ export function useSignInScreen() {
         setShowPassword(isShowing => !isShowing);
     }
 
-    function handleSignIn() {
-        console.log("Sign In");
+    async function handleSignIn() {
+        setIsSubmitting(true);
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: form.email,
+            password: form.password,
+        });
+
+        if (!error && !data.user) {
+            setIsSubmitting(false);
+            return Alert.alert(
+                "Error ",
+                "Check your e-mail for the Login Link",
+            );
+        }
+
+        if (error) {
+            setIsSubmitting(false);
+            return Alert.alert("Error ", error.message);
+        }
     }
 
     function handleSignUpPress() {

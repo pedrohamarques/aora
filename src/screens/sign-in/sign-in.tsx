@@ -38,6 +38,8 @@ export function SignInScreen() {
                         otherStyles='mt-7'
                         keyboardType='email-address'
                         testID='screens.sign-in.form-field.email'
+                        autoCapitalize='sentences'
+                        autoCorrect={false}
                     />
                     <FormField
                         title='Password'
@@ -47,6 +49,8 @@ export function SignInScreen() {
                         }
                         otherStyles='mt-7'
                         secureTextEntry={!showPassword}
+                        autoCapitalize='none'
+                        autoCorrect={false}
                         testID='screens.sign-in.form-field.password'>
                         <TouchableOpacity
                             onPress={() => setShowPassword(!showPassword)}>
