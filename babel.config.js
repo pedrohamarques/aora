@@ -5,6 +5,14 @@ module.exports = function (api) {
         plugins: [
             "nativewind/babel",
             [
+                "module:react-native-dotenv",
+                {
+                    moduleName: "@env",
+                    verbose: false,
+                    path: ".env",
+                },
+            ],
+            [
                 "module-resolver",
                 {
                     alias: {
@@ -15,6 +23,8 @@ module.exports = function (api) {
                         "@routes": "./src/routes",
                         "@components": "./src/components",
                         "@libs": "./src/libs",
+                        "@services": "./src/services",
+                        "@contexts": "./src/contexts",
                     },
                 },
             ],

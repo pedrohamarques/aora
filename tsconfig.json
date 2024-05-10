@@ -10,7 +10,9 @@
             "@screens/*": ["./src/screens/*"],
             "@routes/*": ["./src/routes/*"],
             "@components/*": ["./src/components/*"],
-            "@libs/*": ["./src/libs/*"]
+            "@libs/*": ["./src/libs/*"],
+            "@services/*": ["./src/services/*"],
+            "@contexts/*": ["./src/contexts/*"]
         }
     }
 }
