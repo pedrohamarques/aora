@@ -1,22 +1,25 @@
 import { FlatList, RefreshControl, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { VideoCard } from "@components/video-card";
+
 import { ListHeader } from "./components/list-header";
 import { EmptyList } from "./components/empty-list";
 
 import { useHomeScreen } from "./home.hook";
 
 export function HomeScreen() {
-    const { refreshing, handleCreatePress, handleRefresh } = useHomeScreen();
+    const { videos, isRefreshing, handleCreatePress, handleRefresh } =
+        useHomeScreen();
     return (
         <SafeAreaView className='h-full bg-primary'>
             <FlatList
-                data={[]}
-                renderItem={() => <View />}
+                data={videos}
+                renderItem={({ item }) => <VideoCard video={item} />}
                 refreshControl={
                     <RefreshControl
                         onRefresh={handleRefresh}
-                        refreshing={refreshing}
+                        refreshing={isRefreshing}
                     />
                 }
                 ListHeaderComponent={<ListHeader />}
