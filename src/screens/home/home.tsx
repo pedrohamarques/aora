@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList, RefreshControl, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ListHeader } from "./components/list-header";
@@ -7,12 +7,18 @@ import { EmptyList } from "./components/empty-list";
 import { useHomeScreen } from "./home.hook";
 
 export function HomeScreen() {
-    const { handleCreatePress } = useHomeScreen();
+    const { refreshing, handleCreatePress, handleRefresh } = useHomeScreen();
     return (
         <SafeAreaView className='h-full bg-primary'>
             <FlatList
                 data={[]}
                 renderItem={() => <View />}
+                refreshControl={
+                    <RefreshControl
+                        onRefresh={handleRefresh}
+                        refreshing={refreshing}
+                    />
+                }
                 ListHeaderComponent={<ListHeader />}
                 ListEmptyComponent={
                     <EmptyList
