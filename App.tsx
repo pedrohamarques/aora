@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -34,6 +35,7 @@ export default function App() {
     return (
         <AuthProvider>
             <NavigationContainer>
+                <StatusBar style='light' />
                 <Routes />
             </NavigationContainer>
         </AuthProvider>
