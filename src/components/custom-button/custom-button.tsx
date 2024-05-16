@@ -4,6 +4,7 @@ import {
     TouchableOpacityProps,
     View,
 } from "react-native";
+import { CircleSnail } from "react-native-progress";
 
 type CustomButtonProps = TouchableOpacityProps & {
     testID?: string;
@@ -28,10 +29,14 @@ export function CustomButton({
             disabled={isLoading}
             className={`bg-secondary rounded-xl min-h-[62px] justify-center items-center ${containerStyles} ${isLoading ? "opacity-50" : ""}`}
             {...rest}>
-            <Text
-                className={`text-primary font-psemibold text-lg ${textStyles} `}>
-                {title}
-            </Text>
+            {isLoading ? (
+                <CircleSnail size={24} thickness={4} />
+            ) : (
+                <Text
+                    className={`text-primary font-psemibold text-lg ${textStyles} `}>
+                    {title}
+                </Text>
+            )}
         </TouchableOpacity>
     );
 }
