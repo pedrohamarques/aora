@@ -1,5 +1,6 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { ResizeMode, Video } from "expo-av";
 
 import { VideoProps } from "@typings/data";
 
@@ -14,7 +15,7 @@ export function VideoCard({
     video,
     testID = "components.video-card",
 }: VideoCardProps) {
-    const { playing, handlePlayPress } = useVideoCard();
+    const { playing, handlePlayPress, handleFinishingVideo } = useVideoCard();
 
     return (
         <View testID={testID} className='flex-col items-center px-4 mb-14'>
@@ -48,7 +49,17 @@ export function VideoCard({
             </View>
 
             {playing ? (
-                <Text className='text-white'>Playing</Text>
+                <Video
+                    // using static link to see the video, link from fetched data not working
+                    source={{
+                        uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+                    }}
+                    className='w-full h-60 rounded-xl mt-3'
+                    resizeMode={ResizeMode.CONTAIN}
+                    shouldPlay
+                    useNativeControls
+                    onPlaybackStatusUpdate={handleFinishingVideo}
+                />
             ) : (
                 <TouchableOpacity
                     className='w-full h-60 rounded-xl mt-3 relative justify-center'

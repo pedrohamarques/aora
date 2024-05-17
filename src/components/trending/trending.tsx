@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { Feather } from "@expo/vector-icons";
+import { Video, ResizeMode } from "expo-av";
 
 import { VideoProps } from "@typings/data";
 
@@ -21,8 +22,13 @@ export function Trending({
     testID = "components.trending",
     posts,
 }: TrendingProps) {
-    const { activeItem, play, handlePlayPress, handleViewableItems } =
-        useTrending({ posts });
+    const {
+        activeItem,
+        play,
+        handlePlayPress,
+        handleViewableItems,
+        handleFinishingVideo,
+    } = useTrending({ posts });
 
     const zoomIn = {
         from: {
@@ -46,7 +52,7 @@ export function Trending({
         <FlatList
             testID={testID}
             data={posts}
-            keyExtractor={item => item.title}
+            keyExtractor={item => item.videoId!}
             horizontal
             showsHorizontalScrollIndicator={false}
             onViewableItemsChanged={({ viewableItems }) =>
@@ -59,8 +65,18 @@ export function Trending({
                     className='mr-5'
                     duration={500}
                     animation={activeItem === item ? zoomIn : zoomOut}>
-                    {play ? (
-                        <Text className='text-white'>Playing</Text>
+                    {play && activeItem === item ? (
+                        <Video
+                            // using static link to see the video, link from fetched data not working
+                            source={{
+                                uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+                            }}
+                            className='w-52 h-72 rounded-[35px] mt-3 bg-white/10'
+                            resizeMode={ResizeMode.CONTAIN}
+                            useNativeControls
+                            shouldPlay
+                            onPlaybackStatusUpdate={handleFinishingVideo}
+                        />
                     ) : (
                         <TouchableOpacity
                             className='relative justify-center items-center'

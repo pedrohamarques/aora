@@ -1,7 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { VideoProps } from "@typings/data";
 import { ViewToken } from "react-native";
+import { AVPlaybackStatus } from "expo-av";
 
 type useTrendingProps = {
     posts: VideoProps[];
@@ -23,10 +24,17 @@ export function useTrending({ posts }: useTrendingProps) {
         },
         [],
     );
+
+    function handleFinishingVideo(status: AVPlaybackStatus) {
+        if (status.isLoaded && status.didJustFinish) {
+            setPlay(false);
+        }
+    }
     return {
         activeItem,
         play,
         handlePlayPress,
         handleViewableItems,
+        handleFinishingVideo,
     };
 }
