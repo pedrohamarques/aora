@@ -1,13 +1,18 @@
+import { Image, Text, View } from "react-native";
+
 import { SearchInput } from "@components/search-input";
 import { Trending } from "@components/trending";
-import { Image, Text, View } from "react-native";
+
+import { VideoProps } from "@typings/data";
 
 type ListHeaderProps = {
     testID?: string;
+    trendingPosts: VideoProps[];
 };
 
 export function ListHeader({
     testID = "screens.home.components.list-header",
+    trendingPosts,
 }: ListHeaderProps) {
     return (
         <View testID={testID} className='my-6 px-4 space-y-6'>
@@ -39,7 +44,7 @@ export function ListHeader({
                     Latest Videos
                 </Text>
 
-                <Trending posts={[{ id: "1" }, { id: "2" }] ?? []} />
+                <Trending posts={trendingPosts} />
             </View>
         </View>
     );
