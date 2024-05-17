@@ -7,4 +7,6 @@ export type VideoProps = {
     thumbnail: string;
     title: string;
     video: string;
+    videoId: string | null;
+    createdAt: string | null;
 };

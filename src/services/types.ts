@@ -40,25 +40,31 @@ export type Database = {
             };
             videos: {
                 Row: {
+                    createdAt: string | null;
                     creatorId: string | null;
                     prompt: string | null;
                     thumbnail: string;
                     title: string;
                     video: string;
+                    videoId: string | null;
                 };
                 Insert: {
+                    createdAt?: string | null;
                     creatorId?: string | null;
                     prompt?: string | null;
                     thumbnail: string;
                     title: string;
                     video: string;
+                    videoId?: string | null;
                 };
                 Update: {
+                    createdAt?: string | null;
                     creatorId?: string | null;
                     prompt?: string | null;
                     thumbnail?: string;
                     title?: string;
                     video?: string;
+                    videoId?: string | null;
                 };
                 Relationships: [
                     {
