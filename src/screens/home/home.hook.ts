@@ -11,8 +11,9 @@ export function useHomeScreen() {
     const [isRefreshing, setIsRefreshing] = useState(false);
 
     const [videos, setVideos] = useState<VideoProps[] | null>(null);
+    const [latestVideos, setLatestVideos] = useState<VideoProps[] | null>(null);
 
-    const { fetchData } = useSupabase();
+    const { fetchData, fetchLatestData } = useSupabase();
 
     const navigation =
         useNavigation<BottomTabNavigationProp<TabRoutesParams>>();
@@ -28,23 +29,36 @@ export function useHomeScreen() {
     }
 
     async function handleFetchVideos() {
-        const fetchedVideos = await fetchData<VideoProps[]>(
-            "videos",
-            "*, creatorId(username, avatar)",
-        );
-        console.log(fetchedVideos);
+        const fetchedVideos = await fetchData<VideoProps[]>({
+            table: "videos",
+            select: "*, creatorId(username, avatar)",
+        });
         if (fetchedVideos) {
             setVideos(fetchedVideos);
         }
     }
 
+    async function handleLatestVideos() {
+        const fetchedLatestVideos = await fetchLatestData<VideoProps[]>({
+            table: "videos",
+            select: "*, creatorId(username, avatar)",
+            limit: 7,
+            order: "createdAt",
+        });
+        if (fetchedLatestVideos) {
+            setLatestVideos(fetchedLatestVideos);
+        }
+    }
+
     useEffect(() => {
         handleFetchVideos();
+        handleLatestVideos();
     }, []);
 
     return {
         isRefreshing,
         videos,
+        latestVideos,
         handleCreatePress,
         handleRefresh,
     };

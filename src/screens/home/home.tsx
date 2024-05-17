@@ -9,8 +9,13 @@ import { EmptyList } from "./components/empty-list";
 import { useHomeScreen } from "./home.hook";
 
 export function HomeScreen() {
-    const { videos, isRefreshing, handleCreatePress, handleRefresh } =
-        useHomeScreen();
+    const {
+        videos,
+        isRefreshing,
+        latestVideos,
+        handleCreatePress,
+        handleRefresh,
+    } = useHomeScreen();
     return (
         <SafeAreaView className='h-full bg-primary'>
             <FlatList
@@ -22,7 +27,9 @@ export function HomeScreen() {
                         refreshing={isRefreshing}
                     />
                 }
-                ListHeaderComponent={<ListHeader />}
+                ListHeaderComponent={
+                    <ListHeader trendingPosts={latestVideos ?? []} />
+                }
                 ListEmptyComponent={
                     <EmptyList
                         title='No Videos found'
