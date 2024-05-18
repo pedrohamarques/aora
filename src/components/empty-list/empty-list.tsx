@@ -13,7 +13,7 @@ export function EmptyList({
     title,
     subtitle,
     onButtonPress,
-    testID = "screens.home.components.empty-list",
+    testID = "components.empty-list",
 }: EmptyListProps) {
     return (
         <View testID={testID} className='justify-center items-center px-4'>

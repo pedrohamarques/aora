@@ -1,10 +1,9 @@
-import { FlatList, RefreshControl, Text, View } from "react-native";
+import { FlatList, RefreshControl } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { VideoCard } from "@components/video-card";
-
-import { ListHeader } from "./components/list-header";
-import { EmptyList } from "./components/empty-list";
+import { ListHeader } from "@components/list-header";
+import { EmptyList } from "@components/empty-list";
 
 import { useHomeScreen } from "./home.hook";
 

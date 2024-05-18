@@ -11,11 +11,15 @@ type ListHeaderProps = {
     trendingPosts: VideoProps[];
     onSearchPress: () => void;
     onChangeSearch: Dispatch<SetStateAction<string | null>>;
+    screen?: "Home" | "Search";
+    headerTitle?: string;
 };
 
 export function ListHeader({
     testID = "screens.home.components.list-header",
     trendingPosts,
+    screen = "Home",
+    headerTitle,
     onSearchPress,
     onChangeSearch,
 }: ListHeaderProps) {
@@ -24,10 +28,10 @@ export function ListHeader({
             <View className='justify-between items-start flex-row mb-6'>
                 <View>
                     <Text className='font-pmedium text-sm text-gray-100'>
-                        Welcome Back,
+                        {screen === "Home" ? "Welcome back," : "Search results"}
                     </Text>
                     <Text className='text-2xl font-psemibold text-white mt-2'>
-                        Pedro Almeida
+                        {screen === "Home" ? "Pedro Almeida" : headerTitle}
                     </Text>
                 </View>
                 <View className='mt-1.5'>
@@ -42,7 +46,7 @@ export function ListHeader({
             <SearchInput
                 placeholder='Search for a video topic'
                 placeholderTextColor='#CDCDE0'
-                testID='screens.home.component.list-header'
+                testID='component.list-header'
                 onPress={onSearchPress}
                 onChangeText={onChangeSearch}
             />

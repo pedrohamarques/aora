@@ -74,7 +74,7 @@ export function useHomeScreen() {
             );
         }
 
-        navigation.navigate(HOME_STACK_ROUTES.SEARCH);
+        navigation.navigate(HOME_STACK_ROUTES.SEARCH, { search: searchInput });
     }
 
     useEffect(() => {
