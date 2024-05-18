@@ -12,6 +12,10 @@ type FetchLatestDataParametersProps = FetchDataParametersProps & {
     order: string;
 };
 
+type FetchSearchDataParametersProps = FetchDataParametersProps & {
+    query: string;
+};
+
 export function useSupabase() {
     async function fetchData<K>({ table, select }: FetchDataParametersProps) {
         try {
@@ -45,8 +49,27 @@ export function useSupabase() {
         }
     }
 
+    async function fetchSearchData<K>({
+        query,
+        table,
+        select,
+    }: FetchSearchDataParametersProps) {
+        try {
+            const { data } = await supabase
+                .from(table)
+                .select(select)
+                .eq("title", query)
+                .returns<K>();
+
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return {
         fetchData,
         fetchLatestData,
+        fetchSearchData,
     };
 }
