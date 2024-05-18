@@ -2,11 +2,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import BookmarkScreen from "@screens/bookmark";
 import ProfileScreen from "@screens/profile";
-import HomeScreen from "@screens/home";
 import CreateScreen from "@screens/create";
 
 import { TAB_ROUTES, TabRoutesParams } from "@typings/routes";
 import { TabIcon, TabLabel } from "./components";
+
+import { HomeStack } from "./home-stack";
 
 export function TabNavigation() {
     const TabNavigation = createBottomTabNavigator<TabRoutesParams>();
@@ -25,7 +26,7 @@ export function TabNavigation() {
             }}>
             <TabNavigation.Screen
                 name={TAB_ROUTES.HOME}
-                component={HomeScreen}
+                component={HomeStack}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, focused }) => (

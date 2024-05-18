@@ -12,6 +12,11 @@ export enum PUBLIC_ROUTES {
     SUCCESS_SIGN_UP = "SuccessSignUp",
 }
 
+export enum HOME_STACK_ROUTES {
+    HOME = "Home",
+    SEARCH = "Search",
+}
+
 export type TabRoutesParams = {
     [TAB_ROUTES.HOME]: undefined;
     [TAB_ROUTES.CREATE]: undefined;
@@ -27,4 +32,9 @@ export type PublicRoutesParam = {
         email: string;
         password: string;
     };
+};
+
+export type HomeStackRoutesParams = {
+    [HOME_STACK_ROUTES.HOME]: undefined;
+    [HOME_STACK_ROUTES.SEARCH]: undefined;
 };
