@@ -36,5 +36,7 @@ export type PublicRoutesParam = {
 
 export type HomeStackRoutesParams = {
     [HOME_STACK_ROUTES.HOME]: undefined;
-    [HOME_STACK_ROUTES.SEARCH]: undefined;
+    [HOME_STACK_ROUTES.SEARCH]: {
+        search: string;
+    };
 };
