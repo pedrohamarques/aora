@@ -8,7 +8,7 @@ import { Dispatch, SetStateAction } from "react";
 
 type ListHeaderProps = {
     testID?: string;
-    trendingPosts: VideoProps[];
+    trendingPosts?: VideoProps[];
     onSearchPress: () => void;
     onChangeSearch: Dispatch<SetStateAction<string | null>>;
     screen?: "Home" | "Search";
@@ -51,13 +51,15 @@ export function ListHeader({
                 onChangeText={onChangeSearch}
             />
 
-            <View className='w-full flex-1 pt-5 pb-8'>
-                <Text className='text-gray-100 text-lg font-pregular mb-3 '>
-                    Latest Videos
-                </Text>
+            {trendingPosts && (
+                <View className='w-full flex-1 pt-5 pb-8'>
+                    <Text className='text-gray-100 text-lg font-pregular mb-3 '>
+                        Latest Videos
+                    </Text>
 
-                <Trending posts={trendingPosts} />
-            </View>
+                    <Trending posts={trendingPosts} />
+                </View>
+            )}
         </View>
     );
 }
