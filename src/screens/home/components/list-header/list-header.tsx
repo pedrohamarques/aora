@@ -4,15 +4,20 @@ import { SearchInput } from "@components/search-input";
 import { Trending } from "@components/trending";
 
 import { VideoProps } from "@typings/data";
+import { Dispatch, SetStateAction } from "react";
 
 type ListHeaderProps = {
     testID?: string;
     trendingPosts: VideoProps[];
+    onSearchPress: () => void;
+    onChangeSearch: Dispatch<SetStateAction<string | null>>;
 };
 
 export function ListHeader({
     testID = "screens.home.components.list-header",
     trendingPosts,
+    onSearchPress,
+    onChangeSearch,
 }: ListHeaderProps) {
     return (
         <View testID={testID} className='my-6 px-4 space-y-6'>
@@ -36,7 +41,10 @@ export function ListHeader({
 
             <SearchInput
                 placeholder='Search for a video topic'
+                placeholderTextColor='#CDCDE0'
                 testID='screens.home.component.list-header'
+                onPress={onSearchPress}
+                onChangeText={onChangeSearch}
             />
 
             <View className='w-full flex-1 pt-5 pb-8'>

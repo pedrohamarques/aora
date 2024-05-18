@@ -15,6 +15,8 @@ export function HomeScreen() {
         latestVideos,
         handleCreatePress,
         handleRefresh,
+        handleSearchPress,
+        setSearchInput,
     } = useHomeScreen();
     return (
         <SafeAreaView className='h-full bg-primary'>
@@ -28,7 +30,11 @@ export function HomeScreen() {
                     />
                 }
                 ListHeaderComponent={
-                    <ListHeader trendingPosts={latestVideos ?? []} />
+                    <ListHeader
+                        trendingPosts={latestVideos ?? []}
+                        onSearchPress={handleSearchPress}
+                        onChangeSearch={setSearchInput}
+                    />
                 }
                 ListEmptyComponent={
                     <EmptyList

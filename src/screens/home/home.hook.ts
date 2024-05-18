@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { useNavigation } from "@react-navigation/native";
+import { Alert } from "react-native";
+import {
+    CompositeNavigationProp,
+    useNavigation,
+} from "@react-navigation/native";
 
 import { useSupabase } from "@services/supabase.hook";
 
-import { TAB_ROUTES, TabRoutesParams } from "@typings/routes";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import {
+    HOME_STACK_ROUTES,
+    HomeStackRoutesParams,
+    TAB_ROUTES,
+    TabRoutesParams,
+} from "@typings/routes";
 import { VideoProps } from "@typings/data";
 
 export function useHomeScreen() {
@@ -12,11 +22,17 @@ export function useHomeScreen() {
 
     const [videos, setVideos] = useState<VideoProps[] | null>(null);
     const [latestVideos, setLatestVideos] = useState<VideoProps[] | null>(null);
+    const [searchInput, setSearchInput] = useState<string | null>(null);
 
     const { fetchData, fetchLatestData } = useSupabase();
 
     const navigation =
-        useNavigation<BottomTabNavigationProp<TabRoutesParams>>();
+        useNavigation<
+            CompositeNavigationProp<
+                NativeStackNavigationProp<HomeStackRoutesParams>,
+                BottomTabNavigationProp<TabRoutesParams>
+            >
+        >();
 
     function handleCreatePress() {
         navigation.navigate(TAB_ROUTES.CREATE);
@@ -50,6 +66,17 @@ export function useHomeScreen() {
         }
     }
 
+    function handleSearchPress() {
+        if (!searchInput) {
+            return Alert.alert(
+                "Missing input",
+                "Please type something to search results across database",
+            );
+        }
+
+        navigation.navigate(HOME_STACK_ROUTES.SEARCH);
+    }
+
     useEffect(() => {
         handleFetchVideos();
         handleLatestVideos();
@@ -61,5 +88,7 @@ export function useHomeScreen() {
         latestVideos,
         handleCreatePress,
         handleRefresh,
+        handleSearchPress,
+        setSearchInput,
     };
 }

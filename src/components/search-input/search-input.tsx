@@ -8,10 +8,12 @@ import { Feather } from "@expo/vector-icons";
 
 type SearchInputProps = TextInputProps & {
     testID?: string;
+    onPress: () => void;
 };
 
 export function SearchInput({
     testID = "components.search-input",
+    onPress,
     ...rest
 }: SearchInputProps) {
     return (
@@ -23,7 +25,7 @@ export function SearchInput({
                 placeholderTextColor={"#7b7b8b"}
                 {...rest}
             />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={onPress}>
                 <Feather name='search' size={24} color='white' />
             </TouchableOpacity>
         </View>
