@@ -58,7 +58,7 @@ export function useSupabase() {
             const { data } = await supabase
                 .from(table)
                 .select(select)
-                .eq("title", query)
+                .ilike("title", `%${query}%`)
                 .returns<K>();
 
             return data;
