@@ -67,9 +67,37 @@ export function useSupabase() {
         }
     }
 
+    async function getUserPosts<K>(id: string) {
+        try {
+            const { data } = await supabase
+                .from("videos")
+                .select("*, creatorId(username, avatar)")
+                .eq("creatorId", id)
+                .returns<K>();
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function fetchUserData<K>(id: string) {
+        try {
+            const { data } = await supabase
+                .from("users")
+                .select()
+                .eq("accountId", id)
+                .returns<K>();
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return {
         fetchData,
         fetchLatestData,
         fetchSearchData,
+        getUserPosts,
+        fetchUserData,
     };
 }

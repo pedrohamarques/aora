@@ -1,3 +1,5 @@
+import { Database } from "@services/types";
+
 export type VideoProps = {
     creatorId: {
         username: string | null;
@@ -10,3 +12,5 @@ export type VideoProps = {
     videoId: string | null;
     createdAt: string | null;
 };
+
+export type UserProps = Database["public"]["Tables"]["users"]["Row"];
