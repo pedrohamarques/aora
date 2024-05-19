@@ -23,7 +23,7 @@ export function ListHeader({
             <TouchableOpacity
                 className='w-full items-end mb-10'
                 onPress={onLogout}>
-                <Feather name='log-out' size={24} />
+                <Feather name='log-out' size={24} color='orange' />
             </TouchableOpacity>
             {data && (
                 <>
