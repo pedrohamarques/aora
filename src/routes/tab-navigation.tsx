@@ -41,7 +41,7 @@ export function TabNavigation() {
                     ),
                 }}
             />
-            <TabNavigation.Screen
+            {/* <TabNavigation.Screen
                 name={TAB_ROUTES.BOOKMARK}
                 component={BookmarkScreen}
                 options={{
@@ -62,7 +62,7 @@ export function TabNavigation() {
                         />
                     ),
                 }}
-            />
+            /> */}
             <TabNavigation.Screen
                 name={TAB_ROUTES.CREATE}
                 component={CreateScreen}
