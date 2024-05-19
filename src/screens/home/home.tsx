@@ -10,6 +10,7 @@ import { useHomeScreen } from "./home.hook";
 export function HomeScreen() {
     const {
         videos,
+        userData,
         isRefreshing,
         latestVideos,
         handleCreatePress,
@@ -33,6 +34,7 @@ export function HomeScreen() {
                         trendingPosts={latestVideos ?? []}
                         onSearchPress={handleSearchPress}
                         onChangeSearch={setSearchInput}
+                        userData={userData}
                     />
                 }
                 ListEmptyComponent={

@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Alert } from "react-native";
 import {
     CompositeNavigationProp,
     useNavigation,
 } from "@react-navigation/native";
+
+import { AuthContext } from "@contexts/auth-provider";
 
 import { useSupabase } from "@services/supabase.hook";
 
@@ -15,16 +17,20 @@ import {
     TAB_ROUTES,
     TabRoutesParams,
 } from "@typings/routes";
-import { VideoProps } from "@typings/data";
+
+import { UserProps, VideoProps } from "@typings/data";
 
 export function useHomeScreen() {
     const [isRefreshing, setIsRefreshing] = useState(false);
 
     const [videos, setVideos] = useState<VideoProps[] | null>(null);
     const [latestVideos, setLatestVideos] = useState<VideoProps[] | null>(null);
+    const [userData, setUserData] = useState<UserProps | null>(null);
     const [searchInput, setSearchInput] = useState<string | null>(null);
 
-    const { fetchData, fetchLatestData } = useSupabase();
+    const { session } = useContext(AuthContext);
+
+    const { fetchData, fetchLatestData, fetchUserData } = useSupabase();
 
     const navigation =
         useNavigation<
@@ -78,15 +84,25 @@ export function useHomeScreen() {
         setSearchInput(null);
     }
 
+    async function handleFetchUserData() {
+        const fetchedData = await fetchUserData<UserProps[]>(session?.user.id!);
+
+        if (fetchedData) {
+            setUserData(fetchedData[0]);
+        }
+    }
+
     useEffect(() => {
         handleFetchVideos();
         handleLatestVideos();
+        handleFetchUserData();
     }, []);
 
     return {
         isRefreshing,
         videos,
         latestVideos,
+        userData,
         handleCreatePress,
         handleRefresh,
         handleSearchPress,
