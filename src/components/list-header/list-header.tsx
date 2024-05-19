@@ -3,7 +3,7 @@ import { Image, Text, View } from "react-native";
 import { SearchInput } from "@components/search-input";
 import { Trending } from "@components/trending";
 
-import { VideoProps } from "@typings/data";
+import { UserProps, VideoProps } from "@typings/data";
 import { Dispatch, SetStateAction } from "react";
 
 type ListHeaderProps = {
@@ -13,6 +13,7 @@ type ListHeaderProps = {
     onChangeSearch: Dispatch<SetStateAction<string | null>>;
     screen?: "Home" | "Search";
     headerTitle?: string;
+    userData?: UserProps | null;
 };
 
 export function ListHeader({
@@ -20,6 +21,7 @@ export function ListHeader({
     trendingPosts,
     screen = "Home",
     headerTitle,
+    userData,
     onSearchPress,
     onChangeSearch,
 }: ListHeaderProps) {
@@ -31,7 +33,7 @@ export function ListHeader({
                         {screen === "Home" ? "Welcome back," : "Search results"}
                     </Text>
                     <Text className='text-2xl font-psemibold text-white mt-2'>
-                        {screen === "Home" ? "Pedro Almeida" : headerTitle}
+                        {screen === "Home" ? userData?.username : headerTitle}
                     </Text>
                 </View>
                 <View className='mt-1.5'>
