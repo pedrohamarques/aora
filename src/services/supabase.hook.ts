@@ -16,6 +16,14 @@ type FetchSearchDataParametersProps = FetchDataParametersProps & {
     query: string;
 };
 
+type insertDataProps = {
+    title: string;
+    thumbnail: string;
+    prompt: string;
+    video: string;
+    creatorId: string;
+};
+
 export function useSupabase() {
     async function fetchData<K>({ table, select }: FetchDataParametersProps) {
         try {
@@ -93,11 +101,23 @@ export function useSupabase() {
         }
     }
 
+    async function insertData<K>(item: insertDataProps) {
+        try {
+            const { data } = await supabase
+                .from("videos")
+                .insert(item)
+                .returns<K>();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return {
         fetchData,
         fetchLatestData,
         fetchSearchData,
         getUserPosts,
         fetchUserData,
+        insertData,
     };
 }
